@@ -1,19 +1,13 @@
 package com.switchfully.Admin;
 
-public class Administrator {
+import com.switchfully.Customer.Customer;
 
-    private final String firstName;
-    private final String lastName;
-    private final String emailAddress;
-    private final String phoneNumber;
+public class Administrator extends Customer {
+
     private final String password;
 
-    public Administrator(String firstName, String lastName, String emailAddress, String phoneNumber, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.emailAddress = emailAddress;
-        this.phoneNumber = phoneNumber;
+    public Administrator(String firstName, String lastName, String email, String password) {
+        super(firstName, lastName, email, null, null);
         this.password = password;
     }
-
 }
