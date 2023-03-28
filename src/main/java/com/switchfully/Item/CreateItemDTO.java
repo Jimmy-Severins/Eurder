@@ -6,6 +6,8 @@ public class CreateItemDTO {
     private double price;
     private int amount;
 
+    private int id = 0;
+
     public CreateItemDTO(String name, String description, double price, int amount) {
         this.name = name;
         this.description = description;
@@ -27,5 +29,9 @@ public class CreateItemDTO {
 
     public int getStockAmount() {
         return amount;
+    }
+
+    public void setId(int id){
+        this.id = id;
     }
 }

@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository
 public class ItemRepository {
-private List<Item> itemList;
+public List<Item> itemList;
     public ItemRepository() {
         this.itemList = new ArrayList<>();
     }

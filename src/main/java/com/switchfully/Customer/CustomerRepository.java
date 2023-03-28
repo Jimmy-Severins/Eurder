@@ -7,7 +7,7 @@ import java.util.List;
 
 @Repository
 public class CustomerRepository {
-    private List<Customer> customerList;
+    public List<Customer> customerList;
     public CustomerRepository() {
         this.customerList = new ArrayList<>();
     }

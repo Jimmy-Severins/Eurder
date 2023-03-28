@@ -6,6 +6,8 @@ public class Item {
     private final double price;
     private final int amount;
 
+    private int id = 0;
+
     public Item(String name, String description, double price, int amount) {
         this.name = name;
         this.description = description;
@@ -23,5 +25,13 @@ public class Item {
     }
     public int getStockAmount() {
         return amount;
+    }
+
+    public void setId(int id){
+        this.id = id;
+    }
+
+    public int getId(){
+        return id;
     }
 }

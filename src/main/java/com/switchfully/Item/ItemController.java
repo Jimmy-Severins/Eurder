@@ -23,5 +23,4 @@ public class ItemController {
         securityService.validateItem(createItemDTO);
         return itemService.addItem(createItemDTO);
     }
-
 }

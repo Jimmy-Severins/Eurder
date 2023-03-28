@@ -10,4 +10,8 @@ public class Administrator extends Customer {
         super(firstName, lastName, email, null, null);
         this.password = password;
     }
+
+    public String getPassword() {
+        return password;
+    }
 }
