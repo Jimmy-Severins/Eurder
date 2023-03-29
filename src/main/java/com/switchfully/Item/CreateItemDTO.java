@@ -1,18 +1,23 @@
 package com.switchfully.Item;
 
+import java.util.UUID;
+
 public class CreateItemDTO {
     private String name;
     private String description;
     private double price;
     private int amount;
 
+    private UUID uuid;
+
     private int id = 0;
 
-    public CreateItemDTO(String name, String description, double price, int amount) {
+    public CreateItemDTO(String name, String description, double price, int amount, UUID uuid) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.amount = amount;
+        this.uuid = uuid;
     }
 
     public String getName() {
@@ -31,7 +36,8 @@ public class CreateItemDTO {
         return amount;
     }
 
-    public void setId(int id){
-        this.id = id;
+    public UUID getUuid() {
+        return uuid;
     }
+
 }

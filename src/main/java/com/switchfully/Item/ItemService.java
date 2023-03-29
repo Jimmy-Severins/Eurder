@@ -19,8 +19,6 @@ public class ItemService {
 
     public Item addItem(CreateItemDTO createItemDTO) {
         Item item = itemMapper.mapToItem(createItemDTO);
-        int id = itemRepository.itemList.size() + 1;
-        item.setId(id);
         return itemRepository.addItem(item);
     }
 }

@@ -26,7 +26,7 @@ public class SecurityService {
     }
     
     public void validateItem(CreateItemDTO createItemDTO) {
-        if (createItemDTO.getName().isEmpty() || createItemDTO.getDescription().isEmpty()) {
+        if (createItemDTO.getName()== null || createItemDTO.getDescription()==null) {
             throw new MandatoryFieldException("Item information is incomplete");
         }
         if (createItemDTO.getPrice() <= -0.1) {
