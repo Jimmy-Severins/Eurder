@@ -12,7 +12,7 @@ public class ItemMapper {
     }
 
     public CreateItemDTO mapToCreateItemDTO(Item item) {
-        return new CreateItemDTO(item.getName(), item.getDescription(), item.getPrice(), item.getStockAmount());
+        return new CreateItemDTO(item.getName(), item.getDescription(), item.getPrice(), item.getStockAmount(), item.getUuid());
     }
 
 }
