@@ -1,8 +1,10 @@
 package com.switchfully.Customer;
 
+import com.switchfully.Exceptions.UserNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -25,9 +27,13 @@ public class CustomerService {
         return customerMapper.mapToCustomerDTOList(customerRepository.getAllCustomers());
     }
 
-    public CustomerDTO getCustomerById(UUID id){
-        return customerRepository.getCustomerById(id)
-                .map(customerMapper::mapToCustomerDTO)
-                .orElse(null);
+    public Customer getCustomerById(UUID id) {
+        return customerRepository.getCustomerById(id).orElseThrow(UserNotFoundException::new);
+    }
+
+    public CustomerDTO getCustomerDTOById(UUID id) {
+        return Optional.ofNullable(customerMapper.mapToCustomerDTO(getCustomerById(id)))
+                .orElseThrow(UserNotFoundException::new)
+                ;
     }
 }

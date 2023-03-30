@@ -1,8 +1,10 @@
 package com.switchfully.Customer;
 
+
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class CustomerMapper {
@@ -24,6 +26,7 @@ public class CustomerMapper {
                 .map(this::mapToCustomerDTO)
                 .toList();
     }
+
     public CustomerDTO mapToCustomerDTO(Customer customer) {
         return new CustomerDTO(customer.getFirstName(), customer.getLastName(), customer.getEmailAddress(), customer.getAddress(), customer.getPhoneNumber(), customer.getId());
     }

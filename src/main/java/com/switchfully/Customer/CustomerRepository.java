@@ -11,20 +11,25 @@ import java.util.UUID;
 @Repository
 public class CustomerRepository {
     public List<Customer> customerList;
+
     public CustomerRepository() {
         this.customerList = new ArrayList<>();
     }
+
     public Customer addCustomer(Customer customer) {
         customerList.add(customer);
         return customer;
     }
+
     public List<Customer> getAllCustomers() {
         return customerList;
     }
 
     public Optional<Customer> getCustomerById(UUID id) {
-        return customerList.stream()
+        return Optional.ofNullable(customerList.stream()
                 .filter(customer -> customer.getId().equals(id))
-                .findFirst();
+                .findFirst()
+                .orElse(null));
     }
+
 }

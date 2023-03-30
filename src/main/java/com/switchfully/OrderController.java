@@ -1,10 +1,7 @@
 package com.switchfully;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "/orders")
@@ -16,7 +13,7 @@ public class OrderController {
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @RequestMapping(path = "/create")
+    @PostMapping(path = "/create")
     public OrderDTO createOrder(@RequestBody CreateOrderDTO createOrderDTO) {
         return orderService.createOrder(createOrderDTO);
     }

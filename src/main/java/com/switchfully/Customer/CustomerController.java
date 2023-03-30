@@ -1,10 +1,13 @@
 package com.switchfully.Customer;
 
+import com.switchfully.Exceptions.UserNotFoundException;
 import com.switchfully.SecurityService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.webjars.NotFoundException;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 @RestController
@@ -19,7 +22,7 @@ public class CustomerController {
         this.securityService = securityService;
     }
 
-    @PostMapping(value="/create", consumes = "application/json", produces = "application/json")
+    @PostMapping(value = "/create", consumes = "application/json", produces = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public Customer createCustomer(@RequestBody CreateCustomerDTO createCustomerDTO) {
         securityService.validateCustomer(createCustomerDTO);
@@ -34,7 +37,7 @@ public class CustomerController {
 
     @GetMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public CustomerDTO getCustomerById(@PathVariable UUID id) {
+    public Customer getCustomerById(@PathVariable UUID id) {
         return customerService.getCustomerById(id);
     }
 }
