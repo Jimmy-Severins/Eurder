@@ -12,7 +12,7 @@ public class Order {
 
     private List<ItemGroup> orderList = new ArrayList<>();
     private LocalDate orderDate;
-    private LocalDate shippingDate;
+    private LocalDate shippingDate = LocalDate.now().plusDays(1);
     private UUID orderId;
     private double totalPrice;
 
@@ -20,32 +20,29 @@ public class Order {
         this.orderDate = LocalDate.now();
         this.orderId = UUID.randomUUID();
     }
-    public void addItemGroup(ItemGroup itemGroup){
+
+    public void addItemGroup(ItemGroup itemGroup) {
         orderList.add(itemGroup);
+        totalPrice += itemGroup.getTotalPrice();
+        shippingDate = calculateShippingDate(itemGroup);
     }
+
     public List<ItemGroup> getOrderList() {
         return orderList;
     }
-    public LocalDate calculateShippingDate(){
-        boolean isAvailable = false;
-        for (ItemGroup itemGroup : orderList) {
-            if (itemGroup.isAvailable()){
-                isAvailable = true;
-            } else {
-                isAvailable = false;
-            }
-        } if (isAvailable){
-            shippingDate = orderDate.plusDays(1);
-        } else {
-            shippingDate = orderDate.plusDays(7);
 
-        } return shippingDate;
+    public LocalDate calculateShippingDate(ItemGroup itemGroup) {
+        if ((itemGroup.getItem().getStockAmount() >= itemGroup.getAmount())&&(shippingDate.isBefore(orderDate.plusDays(7)))) {
+            return orderDate.plusDays(1);
+        } else {
+            return orderDate.plusDays(7);
+        }
     }
-    public double calculateTotalPrice(){
-        double totalPrice = 0;
+
+    public void calculateTotalPrice() {
         for (ItemGroup itemGroup : orderList) {
-            totalPrice += itemGroup.calculatePrice();
-        } return totalPrice;
+            totalPrice += itemGroup.getTotalPrice();
+        }
     }
 
     public LocalDate getOrderDate() {
@@ -83,4 +80,5 @@ public class Order {
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
     }
+
 }

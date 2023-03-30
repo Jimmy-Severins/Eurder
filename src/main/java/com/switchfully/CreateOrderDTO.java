@@ -12,11 +12,11 @@ public class CreateOrderDTO {
     private LocalDate shippingDate;
     private double totalPrice;
 
-    public CreateOrderDTO(List<ItemGroup> orderList, LocalDate orderDate, LocalDate shippingDate, double totalPrice) {
-        this.orderList = orderList;
-        this.orderDate = orderDate;
-        this.shippingDate = shippingDate;
-        this.totalPrice = totalPrice;
+    public CreateOrderDTO(Order order) {
+        this.orderList = order.getOrderList();
+        this.orderDate = order.getOrderDate();
+        this.shippingDate = order.getShippingDate();
+        this.totalPrice = order.getTotalPrice();
     }
 
     public List<ItemGroup> getOrderList() {

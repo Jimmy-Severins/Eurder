@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 public class OrderMapper {
 
     public CreateOrderDTO toDTO(Order order){
-        return new CreateOrderDTO(order.getOrderList(), order.getOrderDate(), order.getShippingDate(), order.getTotalPrice());
+        return new CreateOrderDTO(order);
     }
 
     public Order mapToOrder(CreateOrderDTO createOrderDTO){
