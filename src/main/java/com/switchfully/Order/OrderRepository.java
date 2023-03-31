@@ -6,6 +6,8 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+
 @Repository
 public class OrderRepository {
 
@@ -39,6 +41,24 @@ public class OrderRepository {
     }
     public Object getAllOrders() {
         return orders;
+    }
+
+    public List<Order> getOrdersByCustomerId(UUID id) {
+        List<Order> ordersByCustomerId = new ArrayList<>();
+        for (Order order : orders) {
+            if (order.getCustomer().getId()==id) {
+                ordersByCustomerId.add(order);
+            }
+        }
+        return ordersByCustomerId;
+    }
+    public Customer getCustomerById(UUID id) {
+        for (Order order : orders) {
+            if (order.getCustomer().getId()==id) {
+                return order.getCustomer();
+            }
+        }
+        return null;
     }
 }
 

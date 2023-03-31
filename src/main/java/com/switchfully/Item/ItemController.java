@@ -31,4 +31,11 @@ public class ItemController {
     public List<Item> getAllItems() {
         return itemService.getAllItems();
     }
+
+    @PutMapping(consumes = "application/json", produces = "application/json")
+    @ResponseStatus(HttpStatus.OK)
+    public Item updateItem(@RequestBody UpdateItemDTO updateItemDTO) {
+        return itemService.updateItem(updateItemDTO);
+    }
+
 }

@@ -31,6 +31,7 @@ public class Order {
         this.shippingDate = returnOrdershippingDate();
         this.totalPrice = calculateTotalPrice();
     }
+
     public double calculateTotalPrice() {
         double totalPrice = 0;
         for (ItemGroup itemGroup : orderList) {

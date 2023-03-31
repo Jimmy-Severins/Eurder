@@ -19,5 +19,13 @@ public List<Item> itemList;
     public List<Item> getAllItems() {
         return itemList;
     }
-
+    public Item updateItem(Item item) {
+        for (int i = 0; i < itemList.size(); i++) {
+            if (itemList.get(i).getName().equals(item.getName())) {
+                itemList.set(i, item);
+                return item;
+            }
+        }
+        return null;
+    }
 }
