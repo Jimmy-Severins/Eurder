@@ -1,9 +1,12 @@
-package com.switchfully.Customer;
+package com.switchfully.Order;
 
-import com.switchfully.Order;
+import com.switchfully.Customer.Customer;
+import com.switchfully.Order.Order;
+import org.springframework.stereotype.Repository;
+
 import java.util.ArrayList;
 import java.util.List;
-
+@Repository
 public class OrderRepository {
 
     private static List<Order> orders = new ArrayList<>();
@@ -23,7 +26,6 @@ public class OrderRepository {
             order.setDateOfOrder();
         }
     }
-
     public List<Order> getOrders() {
         return orders;
     }
@@ -35,7 +37,8 @@ public class OrderRepository {
         }
         return null;
     }
-
-
+    public Object getAllOrders() {
+        return orders;
+    }
 }
 

@@ -1,13 +1,11 @@
-package com.switchfully;
+package com.switchfully.Order;
 
 import com.switchfully.Customer.Customer;
-import com.switchfully.Customer.OrderRepository;
 import com.switchfully.Item.Item;
 import com.switchfully.Item.ItemGroup;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -19,7 +17,8 @@ public class Order {
     private LocalDate shippingDate;
     private UUID id;
 
-    public Order(ItemGroup itemGroup, Customer customer) {
+    public Order(int value, Item item, Customer customer) {
+        ItemGroup itemGroup = new ItemGroup(item, value);
         this.customer = customer;
         this.dateOfOrder = LocalDate.now();
         this.shippingDate = itemGroup.getShippingDate();
@@ -77,6 +76,19 @@ public class Order {
     }
     public void setDateOfOrder(){
         this.dateOfOrder = null;
+    }
+
+    public List<ItemGroup> getOrderList() {
+        return orderList;
+    }
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+    public LocalDate getDateOfOrder() {
+        return dateOfOrder;
+    }
+    public UUID getId() {
+        return id;
     }
 }
 
