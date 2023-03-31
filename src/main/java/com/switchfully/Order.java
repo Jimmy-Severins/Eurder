@@ -1,84 +1,83 @@
 package com.switchfully;
 
+import com.switchfully.Customer.Customer;
+import com.switchfully.Customer.OrderRepository;
+import com.switchfully.Item.Item;
 import com.switchfully.Item.ItemGroup;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.UUID;
 
 public class Order {
-
     private List<ItemGroup> orderList = new ArrayList<>();
-    private LocalDate orderDate;
-    private LocalDate shippingDate = LocalDate.now().plusDays(1);
-    private UUID orderId;
+    private Customer customer;
     private double totalPrice;
+    private LocalDate dateOfOrder;
+    private LocalDate shippingDate;
+    private UUID id;
 
-    public Order() {
-        this.orderDate = LocalDate.now();
-        this.orderId = UUID.randomUUID();
-    }
-
-    public void addItemGroup(ItemGroup itemGroup) {
+    public Order(ItemGroup itemGroup, Customer customer) {
+        this.customer = customer;
+        this.dateOfOrder = LocalDate.now();
+        this.shippingDate = itemGroup.getShippingDate();
+        this.totalPrice = itemGroup.getTotalPrice();
+        this.id = UUID.randomUUID();
         orderList.add(itemGroup);
-        totalPrice += itemGroup.getTotalPrice();
-        shippingDate = calculateShippingDate(itemGroup);
     }
-
-    public List<ItemGroup> getOrderList() {
-        return orderList;
+    public void addOrder(ItemGroup itemGroup) {
+        orderList.add(itemGroup);
+        this.shippingDate = returnOrdershippingDate();
+        this.totalPrice = calculateTotalPrice();
     }
-
-    public LocalDate calculateShippingDate(ItemGroup itemGroup) {
-        if ((itemGroup.getItem().getStockAmount() >= itemGroup.getAmount())&&(shippingDate.isBefore(orderDate.plusDays(7)))) {
-            return orderDate.plusDays(1);
-        } else {
-            return orderDate.plusDays(7);
-        }
-    }
-
-    public void calculateTotalPrice() {
+    public double calculateTotalPrice() {
+        double totalPrice = 0;
         for (ItemGroup itemGroup : orderList) {
             totalPrice += itemGroup.getTotalPrice();
         }
+        return totalPrice;
     }
-
-    public LocalDate getOrderDate() {
-        return orderDate;
+    public LocalDate returnOrdershippingDate() {
+        LocalDate shippingDate = LocalDate.now().plusDays(1);
+        for (ItemGroup itemgroup : orderList) {
+            if (shippingDate.isBefore(itemgroup.getShippingDate())) {
+                shippingDate = itemgroup.getShippingDate();
+            }
+        }
+        return shippingDate;
     }
-
+    public Customer getCustomer() {
+        return customer;
+    }
     public LocalDate getShippingDate() {
         return shippingDate;
     }
 
-    public UUID getOrderId() {
-        return orderId;
+    public ItemGroup getItemGroup(){
+        return orderList.get(0);
     }
 
-    public double getTotalPrice() {
-        return totalPrice;
+    public void setCustomer() {
+        this.customer = null;
     }
 
-    public void setOrderList(List<ItemGroup> orderList) {
-        this.orderList = orderList;
+    public void setItemGroup() {
+        this.orderList = null;
     }
-
-    public void setOrderDate(LocalDate orderDate) {
-        this.orderDate = orderDate;
+    public void setTotalPrice(){
+        this.totalPrice =0;
     }
-
-    public void setShippingDate(LocalDate shippingDate) {
-        this.shippingDate = shippingDate;
+    public void setShippingDate(){
+        this.shippingDate = null;
     }
-
-    public void setOrderId(UUID orderId) {
-        this.orderId = orderId;
+    public void setId(){
+        this.id = null;
     }
-
-    public void setTotalPrice(double totalPrice) {
-        this.totalPrice = totalPrice;
+    public void setDateOfOrder(){
+        this.dateOfOrder = null;
     }
-
 }
+
+

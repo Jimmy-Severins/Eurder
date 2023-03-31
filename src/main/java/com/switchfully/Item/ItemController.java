@@ -5,6 +5,8 @@ import com.switchfully.SecurityService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/items")
 public class ItemController {
@@ -22,5 +24,11 @@ public class ItemController {
     public Item addItem(@RequestBody CreateItemDTO createItemDTO) {
         securityService.validateItem(createItemDTO);
         return itemService.addItem(createItemDTO);
+    }
+
+    @GetMapping(value="/get", produces = "application/json")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Item> getAllItems() {
+        return itemService.getAllItems();
     }
 }

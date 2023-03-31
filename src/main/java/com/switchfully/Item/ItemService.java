@@ -6,6 +6,8 @@ import com.switchfully.Item.ItemMapper;
 import com.switchfully.Item.ItemRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ItemService {
 
@@ -20,5 +22,9 @@ public class ItemService {
     public Item addItem(CreateItemDTO createItemDTO) {
         Item item = itemMapper.mapToItem(createItemDTO);
         return itemRepository.addItem(item);
+    }
+
+    public List<Item> getAllItems() {
+        return itemRepository.getAllItems();
     }
 }

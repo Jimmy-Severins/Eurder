@@ -16,5 +16,8 @@ public List<Item> itemList;
         itemList.add(item);
         return item;
     }
+    public List<Item> getAllItems() {
+        return itemList;
+    }
 
 }
